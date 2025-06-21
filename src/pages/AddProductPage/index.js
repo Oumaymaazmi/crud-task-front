@@ -8,18 +8,25 @@ export default function AddProductPage() {
   const [statusType, setStatusType] = useState(""); // 'success' or 'error'
   const [statusMessage, setStatusMessage] = useState("");
 
+  // Determine if we're in add or edit mode
+  const isEditMode = location.pathname.includes("/edit");
+  const pageTitle = isEditMode ? "Edit Product" : "Add Product";
+  const actionVerb = isEditMode ? "Edit" : "Add";
+
   const timelineItems = [
     {
       id: 1,
-      title: "Add Product",
-      subtitle: "Fill in the product details and save.",
-      selected: location.pathname.includes("/add"),
+      title: `${actionVerb} Product`,
+      subtitle: isEditMode 
+        ? "Update the product details and save." 
+        : "Fill in the product details and save.",
+      selected: true, // Always selected since we're on this page
     },
   ];
 
   return (
-       <FormLayout
-      sectionName="Add Product"
+    <FormLayout
+      sectionName={pageTitle}
       timelineItems={timelineItems}
       statusMessage={statusMessage}
       statusType={statusType}
