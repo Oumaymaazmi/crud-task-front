@@ -1,22 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Wrapper from './Wrapper';
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, MenuItem  } from "@mui/material";
+import productService from "services/productService";
+import { categoryOptions } from "./constants";
 
-export default function AppAddProduct() {
+export default function AppAddProduct({ setStatusMessage, setStatusType })  {
   const { id } = useParams();
-
-  const [product, setProduct] = useState({ name: "", price: "", quantity:1, category:"" });
+  const initialProductState = { name: "", price: "", quantity: null, category: null };
+  const [product, setProduct] = useState(initialProductState);
   const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     setProduct({ ...product, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e) {
+ async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    console.log("produt", product)
+    
+    try {
+      await productService.addProduct({
+        name: product.name,
+        price: parseFloat(product.price),
+        quantity: parseInt(product.quantity),
+        category: product.category || null,
+      });
+      setStatusType("success");
+      setStatusMessage("Product successfully saved!");
+      setProduct(initialProductState);
+    } catch (err) {
+       setStatusType("error");
+      setStatusMessage("ERROR : "+ err?.response?.data?.errors?.join(", "));
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -57,14 +75,21 @@ export default function AppAddProduct() {
           />
         </div>
         <div className="form-field">
-         <TextField
+           <TextField
+            select
             label="Category"
             name="category"
             value={product.category}
             onChange={handleChange}
             variant="outlined"
             fullWidth
-          />
+          >
+            {categoryOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
         <Button
           type="submit"

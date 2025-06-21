@@ -1,19 +1,11 @@
 
 import { styled } from "@mui/system";
-
 const Wrapper = styled("div")`
   max-width: 900px;
   margin: 40px auto;
   padding: 24px;
   background-color: #f8f9fa;
   border-radius: 8px;
-
-  h2 {
-    font-size: 24px;
-    margin-bottom: 16px;
-    font-weight: bold;
-    color: #343a40;
-  }
 
   .timeline {
     display: flex;
@@ -38,6 +30,14 @@ const Wrapper = styled("div")`
       font-size: 14px;
       color: #6c757d;
     }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
   }
 
   .form-container {
@@ -47,6 +47,5 @@ const Wrapper = styled("div")`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 `;
-
 
 export default Wrapper;

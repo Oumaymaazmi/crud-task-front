@@ -1,10 +1,12 @@
-import React from "react";
+import React ,{ useState } from "react";
 import { useLocation } from "react-router-dom";
 import FormLayout from "components/FormLayout";
 import AppAddProduct from "containers/AppAddProduct";
 
 export default function AddProductPage() {
   const location = useLocation();
+  const [statusType, setStatusType] = useState(""); // 'success' or 'error'
+  const [statusMessage, setStatusMessage] = useState("");
 
   const timelineItems = [
     {
@@ -16,8 +18,16 @@ export default function AddProductPage() {
   ];
 
   return (
-    <FormLayout sectionName="Add Product" TimelineItems={timelineItems}>
-      <AppAddProduct />
+       <FormLayout
+      sectionName="Add Product"
+      timelineItems={timelineItems}
+      statusMessage={statusMessage}
+      statusType={statusType}
+    >
+      <AppAddProduct
+        setStatusMessage={setStatusMessage}
+        setStatusType={setStatusType}
+      />
     </FormLayout>
   );
 }

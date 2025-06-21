@@ -2,15 +2,15 @@ import React from "react";
 import { styled } from "@mui/system";
 import Wrapper from './Wrapper';
 
-export default function FormLayout({ sectionName, TimelineItems, children }) {
+export default function FormLayout({ sectionName, timelineItems, children, statusMessage, statusType }) {
   return (
     <Wrapper>
       <h2>{sectionName}</h2>
       <div className="timeline">
-        {TimelineItems.map((item) => (
+        {timelineItems.map((item) => (
           <div key={item.id} className={item.selected ? "selected" : ""}>
             <h4>{item.title}</h4>
-            <p>{item.subtitle}</p>
+            <p className={statusType}>{statusMessage || item.subtitle}</p>
           </div>
         ))}
       </div>
