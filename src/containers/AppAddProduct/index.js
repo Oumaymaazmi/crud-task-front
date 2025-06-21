@@ -3,12 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import Wrapper from './Wrapper';
 import { TextField, Button, MenuItem  } from "@mui/material";
 import productService from "services/productService";
-import { categoryOptions } from "./constants";
+import { categoryOptions } from "constants/constants";
 import { useLocation } from 'react-router-dom';
 
 export default function AppAddProduct({ setStatusMessage, setStatusType })  {
   const { id } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
+
   const initialProductState = { name: "", price: "", quantity: null, category: null };
   const [product, setProduct] = useState(initialProductState);
   const [loading, setLoading] = useState(false);
@@ -65,6 +67,7 @@ export default function AppAddProduct({ setStatusMessage, setStatusType })  {
         setStatusMessage("Product successfully saved!");
         setProduct(initialProductState);
       }
+       navigate("/")
     } catch (err) {
       setStatusType("error");
       const errors = err?.response?.data?.errors;
