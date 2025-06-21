@@ -2,15 +2,20 @@ import { styled } from "@mui/system";
 
 const Wrapper = styled("div")`
   .table-container {
-    margin-top: 24px;
-    border-radius: 8px;
-    overflow: hidden;
+    min-width: 800px; /* ✅ Force table width */
+  }
+
+  .table-scroll-wrapper {
+    overflow-x: auto;     /* ✅ Enable horizontal scroll */
+    width: 100%;
   }
 
   .header-actions {
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .pagination {

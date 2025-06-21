@@ -71,48 +71,51 @@ export default function AppProductListing({ setStatusType, setStatusMessage }) {
       {loading ? (
         <CircularProgress />
       ) : (
-        <TableContainer component={Paper} className="table-container">
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Quantity</TableCell>
-                <TableCell>Category</TableCell>
-                <TableCell align="right">Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {products.map((p) => (
-                <TableRow key={p.id}>
-                  <TableCell>{p.name}</TableCell>
-                  <TableCell>{p.price}</TableCell>
-                  <TableCell>{p.quantity}</TableCell>
-                  <TableCell>{getCategoryLabel(p.category)}</TableCell>
-                  <TableCell align="right">
-                    <div className="action-buttons">
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        onClick={() => navigate(`/edit/${p.id}`)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        className="delete-btn"
-                        onClick={() => handleDelete(p.id)}
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </TableCell>
+        <div className="table-scroll-wrapper">
+            <TableContainer component={Paper} className="table-container">
+            <Table>
+                <TableHead>
+                <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Price</TableCell>
+                    <TableCell>Quantity</TableCell>
+                    <TableCell>Category</TableCell>
+                    <TableCell align="right">Actions</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                </TableHead>
+                <TableBody>
+                {products.map((p) => (
+                    <TableRow key={p.id}>
+                    <TableCell>{p.name}</TableCell>
+                    <TableCell>{p.price}</TableCell>
+                    <TableCell>{p.quantity}</TableCell>
+                    <TableCell>{getCategoryLabel(p.category)}</TableCell>
+                    <TableCell align="right">
+                        <div className="action-buttons">
+                        <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={() => navigate(`/edit/${p.id}`)}
+                        >
+                            Edit
+                        </Button>
+                        <Button
+                            size="small"
+                            variant="outlined"
+                            className="delete-btn"
+                            onClick={() => handleDelete(p.id)}
+                        >
+                            Delete
+                        </Button>
+                        </div>
+                    </TableCell>
+                    </TableRow>
+                ))}
+                </TableBody>
+            </Table>
+            </TableContainer>
+        </div>
+
       )}
 
       <div className="pagination">
