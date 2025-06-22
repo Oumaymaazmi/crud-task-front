@@ -31,8 +31,9 @@ export default function AppAddProduct({ setStatusMessage, setStatusType })  {
           setProduct(productData);
         })
         .catch((err) => {
+          const error = Array.isArray(err?.response?.data) ? err?.response?.data?.errors.join(", ") : err?.response?.data;
+          setStatusMessage("ERROR: " + error || "Unknown error");
           setStatusType("error");
-          setStatusMessage("Failed to load product: " + err.message);
         })
         .finally(() => {
           setLoading(false);
@@ -70,8 +71,8 @@ export default function AppAddProduct({ setStatusMessage, setStatusType })  {
        navigate("/")
     } catch (err) {
       setStatusType("error");
-      const errors = err?.response?.data?.errors;
-      setStatusMessage("ERROR: " + (Array.isArray(errors) ? errors.join(", ") : "Unknown error"));
+      const error = err?.response?.data?.errors ? err?.response?.data?.errors.join(", ") : err?.response?.data;
+      setStatusMessage("ERROR: " + error || "Unknown error");
     } finally {
       setLoading(false);
     }
