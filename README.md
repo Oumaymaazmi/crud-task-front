@@ -33,36 +33,6 @@ It consumes the backend REST APIs and provides a user-friendly interface for aut
 
 ---
 
-## 📥 Clone the Repository
-
-```bash
-git clone https://github.com/Oumaymaazmi/crud-task-front.git
-```
-
----
-
-## 📦 Install Dependencies
-
-```bash
-npm install
-```
-
-Or if using yarn:
-
-```bash
-yarn install
-```
-
----
-
-## 🚀 Run the Application
-
-```bash
-npm start 
-```
-
----
-
 ## 📌 Features
 
 - ✨ Modern UI with responsive design
