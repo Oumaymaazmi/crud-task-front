@@ -1,11 +1,34 @@
 
 import { styled } from "@mui/system";
 const Wrapper = styled("div")`
-  max-width: 900px;
+  max-width: 1500px;
   margin: 40px auto;
   padding: 24px;
   background-color: #f8f9fa;
   border-radius: 8px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      color: #343a40;
+    }
+
+    .logout-btn {
+      border-color: #d32f2f;
+      color: #d32f2f;
+      font-weight: bold;
+      text-transform: none;
+    }
+
+    .logout-btn:hover {
+      background-color: #fddede;
+    }
+  }
 
   .timeline {
     display: flex;

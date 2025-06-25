@@ -43,6 +43,7 @@ export default function AppAddProduct({ setStatusMessage, setStatusType })  {
 
 
   function handleChange(e) {
+    console.log(e.target.value , e.target.name )
     setProduct({ ...product, [e.target.name]: e.target.value });
   }
 
@@ -54,7 +55,7 @@ export default function AppAddProduct({ setStatusMessage, setStatusType })  {
       const payload = {
         name: product.name,
         price: parseFloat(product.price),
-        quantity: parseInt(product.quantity),
+        quantity: parseFloat(product.quantity),
         category: product.category || null,
       };
 

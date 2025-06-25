@@ -26,7 +26,8 @@ export default function AppProductListing({ setStatusType, setStatusMessage }) {
     setStatusType(null);
     } catch (err) {
       setStatusType("error");
-      setStatusMessage("Failed to load products.");
+      const errr = err?.response?.data || "Unknown error";
+      setStatusMessage("ERROR: " + errr);
     } finally {
       setLoading(false);
     }
